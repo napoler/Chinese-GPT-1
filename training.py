@@ -27,15 +27,15 @@ from pytorch_pretrained_bert import BertModel, BertTokenizer, OpenAIAdam
 encoder = Encoder()
 decoder = Decoder()
 
-# encoder.load_state_dict(torch.load("model/encoder.pth"))
-# decoder.load_state_dict(torch.load("model/model_state_epoch_62.th"))
+encoder.load_state_dict(torch.load("model/encoder.pth"))
+decoder.load_state_dict(torch.load("model/model_state_epoch_62.th"))
 
 
-# device = torch.device("cuda")
-device = torch.device("cpu")
+device = torch.device("cuda")
+# device = torch.device("cpu")
 #  a = torch.load("model/encoder.pth", map_location=torch.device('cpu'))
-encoder.load_state_dict(torch.load("model/encoder.pth", map_location=device))
-decoder.load_state_dict(torch.load("model/model_state_epoch_62.th", map_location=device))
+# encoder.load_state_dict(torch.load("model/encoder.pth", map_location=device))
+# decoder.load_state_dict(torch.load("model/model_state_epoch_62.th", map_location=device))
 
 train_data = torch.load("train_data.pth", map_location=device)
 
