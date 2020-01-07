@@ -91,14 +91,16 @@ def load_model():
 
     """### Load weights into the model"""
 
-    old_state_dict = torch.load("model/model_state_epoch_62.th", map_location=lambda storage, loc: storage)
+    # old_state_dict = torch.load("model/model_state_epoch_62.th", map_location=lambda storage, loc: storage)
+    old_state_dict = torch.load("model/decoder.pth", map_location=lambda storage, loc: storage)
     new_state_dict = model.state_dict()
-
+    print(old_state_dict)
     for item in new_state_dict.keys():
-        new_state_dict[item] = old_state_dict['module.'+item]
+        # new_state_dict[item] = old_state_dict['module.'+item]
+        new_state_dict[item] = old_state_dict[''+item]
         
     model.load_state_dict(new_state_dict)
-
+    # torch.save(model,"model_state_epoch_62.th")
     return model,tokenizer
 
 
@@ -155,8 +157,8 @@ def pre(text,len,model,tokenizer):
         return "".join(output)
 
 model,tokenizer =load_model()
-text="柯基犬可是个"
-p_text=pre(text=text,len=500,model=model,tokenizer=tokenizer)
+text="你"
+p_text=pre(text=text,len=50,model=model,tokenizer=tokenizer)
 print(text)
 print(p_text)
 # !nvidia-smi
